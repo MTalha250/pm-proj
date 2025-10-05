@@ -66,7 +66,7 @@ npm install
 cp .env.local
 
 # Edit .env.local and set MongoDB connection string
-MONGODB_URI=mongodb+srv://talhabinay:talha126@cluster0.m5ikalo.mongodb.net/
+MONGODB_URI=mongodb+srv://....
 ```
 
 4. **Run the development server**
