@@ -2,7 +2,7 @@
 
 A comprehensive web application for exploring, comparing, and applying project management standards including PMBOK 7th Edition, PRINCE2, ISO 21500, and ISO 21502.
 
-## 🎯 Features
+## Features
 
 ### 1. **Standards Repository**
 
@@ -49,7 +49,7 @@ A comprehensive web application for exploring, comparing, and applying project m
 1. **Clone the repository**
 
 ```bash
-git clone <your-repo-url>
+git clone <repo-url>
 cd pm
 ```
 
@@ -62,32 +62,26 @@ npm install
 3. **Configure MongoDB**
 
 ```bash
-# Copy the example env file
-cp .env.local.example .env.local
+# Create env file
+cp .env.local
 
-# Edit .env.local and set your MongoDB connection string
-# For local MongoDB:
-MONGODB_URI=mongodb://localhost:27017/pm-standards
+# Edit .env.local and set MongoDB connection string
+MONGODB_URI=mongodb+srv://talhabinay:talha126@cluster0.m5ikalo.mongodb.net/
 ```
 
-4. **Start MongoDB** (if using local)
-
-```bash
-mongod
-```
-
-5. **Run the development server**
+4. **Run the development server**
 
 ```bash
 npm run dev
 ```
 
-6. **Open the application**
+5. **Open the application**
    Navigate to [http://localhost:3000](http://localhost:3000)
 
 ## 📊 Database Setup
 
 The database comes pre-populated with:
+
 - ✅ 5 PM Standards (PMBOK, PRINCE2, ISO 21500, ISO 21502, Process Groups)
 - ✅ 664 Sections with full content
 - ✅ Sample comparisons and process templates
