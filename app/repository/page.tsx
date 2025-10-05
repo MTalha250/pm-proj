@@ -296,7 +296,7 @@ export default function RepositoryPage() {
 
                 <div className="lg:col-span-2">
                   {selectedSection ? (
-                    <div className="bg-white rounded-lg shadow-md p-8">
+                    <div className="bg-white rounded-lg shadow-md p-8 overflow-hidden">
                       <div className="flex items-start justify-between mb-4">
                         <div>
                           <h2 className="text-2xl font-bold text-gray-900">
@@ -335,11 +335,24 @@ export default function RepositoryPage() {
                       </div>
 
                       <div className="border-t-2 border-gray-200 pt-6 mt-6">
-                        <div className="max-w-4xl">
-                          <div className="space-y-3">
+                        <div className="max-w-full overflow-x-auto">
+                          <div className="space-y-3 break-words">
                             {selectedSection.content.split('\n').map((paragraph, idx) => {
                               const trimmed = paragraph.trim();
                               if (!trimmed) return <div key={idx} className="h-2" />;
+
+                              if (trimmed.includes('…………') || trimmed.includes('.......') || /\.{3,}/.test(trimmed)) {
+                                const parts = trimmed.split(/[.…]+/);
+                                if (parts.length >= 2) {
+                                  return (
+                                    <div key={idx} className="flex justify-between items-center py-1 hover:bg-gray-50 px-2 rounded">
+                                      <span className="text-gray-700 flex-shrink-0 pr-2">{parts[0].trim()}</span>
+                                      <span className="border-b border-dotted border-gray-300 flex-grow mx-2"></span>
+                                      <span className="text-gray-600 flex-shrink-0 pl-2">{parts[parts.length - 1].trim()}</span>
+                                    </div>
+                                  );
+                                }
+                              }
 
                               if (trimmed.startsWith('●') || trimmed.startsWith('•')) {
                                 return (
@@ -388,7 +401,7 @@ export default function RepositoryPage() {
                               }
 
                               return (
-                                <p key={idx} className="text-gray-700 leading-8 text-base">
+                                <p key={idx} className="text-gray-700 leading-8 text-base break-words overflow-wrap-anywhere">
                                   {trimmed}
                                 </p>
                               );

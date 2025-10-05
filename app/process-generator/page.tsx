@@ -138,33 +138,37 @@ export default function ProcessGeneratorPage() {
 
       {step < 5 && (
         <div className="bg-white rounded-lg shadow-md p-6 mb-6">
-          <div className="flex items-center justify-between mb-4">
-            {[1, 2, 3, 4].map((s) => (
-              <div key={s} className="flex items-center">
-                <div
-                  className={`w-10 h-10 rounded-full flex items-center justify-center font-bold ${
-                    step >= s
-                      ? "bg-blue-600 text-white"
-                      : "bg-gray-200 text-gray-500"
-                  }`}
-                >
-                  {step > s ? <FiCheckCircle /> : s}
-                </div>
-                {s < 4 && (
+          <div className="flex items-center justify-between mb-6">
+            {[1, 2, 3, 4].map((s, idx) => (
+              <div key={s} className="flex items-center flex-1">
+                <div className="flex flex-col items-center flex-1">
                   <div
-                    className={`w-12 sm:w-20 h-1 ${
-                      step > s ? "bg-blue-600" : "bg-gray-200"
+                    className={`w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg transition-all ${
+                      step >= s
+                        ? "bg-blue-600 text-white shadow-lg"
+                        : "bg-gray-200 text-gray-500"
                     }`}
-                  />
+                  >
+                    {step > s ? <FiCheckCircle className="text-2xl" /> : s}
+                  </div>
+                  <div className="text-center text-sm text-gray-600 mt-2 font-medium">
+                    {s === 1 && "Project Type"}
+                    {s === 2 && "Size"}
+                    {s === 3 && "Complexity"}
+                    {s === 4 && "Industry"}
+                  </div>
+                </div>
+                {idx < 3 && (
+                  <div className="flex-1 h-1 mx-2" style={{ marginTop: '-24px' }}>
+                    <div
+                      className={`h-full transition-all ${
+                        step > s ? "bg-blue-600" : "bg-gray-200"
+                      }`}
+                    />
+                  </div>
                 )}
               </div>
             ))}
-          </div>
-          <div className="grid grid-cols-4 gap-2 text-center text-sm text-gray-600">
-            <div>Project Type</div>
-            <div>Size</div>
-            <div>Complexity</div>
-            <div>Industry</div>
           </div>
         </div>
       )}
